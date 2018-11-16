@@ -167,10 +167,10 @@
         if (BN_is_zero(privateKey)) {
             return nil;
         }
-
-        int numBytes = BN_num_bytes(privateKey);
+        int numBytes = (int)self.privateKey.length;
+        int padding = numBytes - BN_num_bytes(privateKey);
         result = [NSMutableData dataWithLength:numBytes];
-        BN_bn2bin(privateKey, result.mutableBytes);
+        BN_bn2bin(privateKey, result.mutableBytes + padding);
 
         BN_free(privateKey);
     } else {

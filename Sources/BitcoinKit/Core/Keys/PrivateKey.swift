@@ -79,7 +79,7 @@ public struct PrivateKey {
         self.data = key
     }
 
-    public init(wif: String) throws {
+    public init(wif: String, network:Network? = nil) throws {
         guard let decoded = Base58.decode(wif) else {
             throw PrivateKeyError.invalidFormat
         }
@@ -88,14 +88,18 @@ public struct PrivateKey {
             throw PrivateKeyError.invalidFormat
         }
 
-        let addressPrefix = checksumDropped[0]
-        switch addressPrefix {
-        case Network.mainnet.privatekey:
-            network = .mainnet
-        case Network.testnet.privatekey:
-            network = .testnet
-        default:
-            throw PrivateKeyError.invalidFormat
+        if let network = network {
+            self.network = network
+        } else {
+            let addressPrefix = checksumDropped[0]
+            switch addressPrefix {
+            case Network.mainnet.privatekey:
+                self.network = .mainnet
+            case Network.testnet.privatekey:
+                self.network = .testnet
+            default:
+                throw PrivateKeyError.invalidFormat
+            }
         }
 
         let h = Crypto.sha256sha256(checksumDropped)

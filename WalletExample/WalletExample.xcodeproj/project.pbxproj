@@ -13,6 +13,7 @@
 		298E17E62150C55E00FF6C77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 298E17E52150C55E00FF6C77 /* Assets.xcassets */; };
 		298E17E92150C55E00FF6C77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 298E17E72150C55E00FF6C77 /* LaunchScreen.storyboard */; };
 		29EA70342150C885009B6485 /* BitcoinKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29EA70332150C885009B6485 /* BitcoinKit.framework */; };
+		8DA161F32195674700BA189C /* HDWalletHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA161F22195674700BA189C /* HDWalletHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		298E17E82150C55E00FF6C77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		298E17EA2150C55E00FF6C77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29EA70332150C885009B6485 /* BitcoinKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BitcoinKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DA161F22195674700BA189C /* HDWalletHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDWalletHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				298E17DE2150C55C00FF6C77 /* AppDelegate.swift */,
 				298E17E02150C55C00FF6C77 /* ViewController.swift */,
+				8DA161F22195674700BA189C /* HDWalletHelper.swift */,
 				298E17E22150C55C00FF6C77 /* Main.storyboard */,
 				298E17E52150C55E00FF6C77 /* Assets.xcassets */,
 				298E17E72150C55E00FF6C77 /* LaunchScreen.storyboard */,
@@ -148,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				298E17E12150C55C00FF6C77 /* ViewController.swift in Sources */,
+				8DA161F32195674700BA189C /* HDWalletHelper.swift in Sources */,
 				298E17DF2150C55C00FF6C77 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

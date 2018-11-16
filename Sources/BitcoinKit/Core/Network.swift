@@ -25,7 +25,7 @@
 
 import Foundation
 
-public class Network {
+open class Network {
     public static let mainnet: Network = BCHMainnet()
     public static let testnet: Network = BCHTestnet()
     public static let mainnetBTC: Network = BTCMainnet()
@@ -41,14 +41,15 @@ public class Network {
     var scripthash: UInt8 { return 0 }
     var xpubkey: UInt32 { return 0 }
     var xprivkey: UInt32 { return 0 }
-
+    var coinType: UInt32 { return 0 }
+    
     var magic: UInt32 { return 0 }
     public var port: UInt32 { return 0 }
     public var dnsSeeds: [String] { return [] }
     var checkpoints: [Checkpoint] { return [] }
     var genesisBlock: Data { return Data() }
 
-    fileprivate init() {}
+    public init() {}
 }
 
 extension Network: Equatable {
@@ -69,7 +70,7 @@ public class BTCMainnet: Mainnet {
     public override var scheme: String {
         return "bitcoin"
     }
-    override var magic: UInt32 {
+    override public var magic: UInt32 {
         return 0xf9beb4d9
     }
     public override var dnsSeeds: [String] {
@@ -119,7 +120,7 @@ public class BCHMainnet: Mainnet {
     public override var scheme: String {
         return "bitcoincash"
     }
-    override var magic: UInt32 {
+    override public var magic: UInt32 {
         return 0xe3e1f3e8
     }
     public override var dnsSeeds: [String] {
@@ -163,22 +164,28 @@ public class BCHTestnet: Testnet {
     }
 }
 
-public class Mainnet: Network {
+open class Mainnet: Network {
     public override var name: String {
         return "livenet"
     }
     public override var alias: String {
         return "mainnet"
     }
-    override var pubkeyhash: UInt8 {
+    override open var pubkeyhash: UInt8 {
         return 0x00
     }
-    override var privatekey: UInt8 {
+    override open var privatekey: UInt8 {
         return 0x80
     }
-    override var scripthash: UInt8 {
+    override open var scripthash: UInt8 {
         return 0x05
     }
+    
+    override open var magic: UInt32 {
+        return 0
+    }
+    override open var coinType: UInt32 { return 0 }
+    
     override var xpubkey: UInt32 {
         return 0x0488b21e
     }

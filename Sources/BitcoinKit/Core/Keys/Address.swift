@@ -66,7 +66,7 @@ public struct LegacyAddress: Address {
         self.publicKey = publicKey
     }
 
-    public init(_ base58: Base58Check) throws {
+    public init(_ base58: Base58Check, network:Network? = nil) throws {
         guard let raw = Base58.decode(base58) else {
             throw AddressError.invalid
         }
@@ -77,27 +77,31 @@ public struct LegacyAddress: Address {
             throw AddressError.invalid
         }
 
-        let network: Network
+        let checkNetwork: Network
         let type: AddressType
         let addressPrefix = pubKeyHash[0]
         switch addressPrefix {
         case Network.mainnet.pubkeyhash:
-            network = .mainnet
+            checkNetwork = .mainnet
             type = .pubkeyHash
         case Network.testnet.pubkeyhash:
-            network = .testnet
+            checkNetwork = .testnet
             type = .pubkeyHash
         case Network.mainnet.scripthash:
-            network = .mainnet
+            checkNetwork = .mainnet
             type = .scriptHash
         case Network.testnet.scripthash:
-            network = .testnet
+            checkNetwork = .testnet
             type = .scriptHash
         default:
-            throw AddressError.invalidVersionByte
+            if let network = network {
+                checkNetwork = network
+                type = addressPrefix == network.scripthash ? .scriptHash : .pubkeyHash
+            } else {
+                throw AddressError.invalidVersionByte
+            }
         }
-
-        self.network = network
+        self.network = checkNetwork
         self.type = type
         self.publicKey = nil
         self.data = pubKeyHash.dropFirst()
@@ -107,7 +111,7 @@ public struct LegacyAddress: Address {
         switch type {
         case .pubkeyHash, .scriptHash:
             let payload = Data([type.versionByte160]) + self.data
-            self.cashaddr = Bech32.encode(payload, prefix: network.scheme)
+            self.cashaddr = Bech32.encode(payload, prefix: self.network.scheme)
         default:
             self.cashaddr = ""
         }

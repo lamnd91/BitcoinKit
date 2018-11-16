@@ -25,7 +25,7 @@
 import Foundation
 
 public struct AddressFactory {
-    public static func create(_ plainAddress: String) throws -> Address {
+    public static func create(_ plainAddress: String, network:Network? = nil) throws -> Address {
         do {
             return try Cashaddr(plainAddress)
         } catch AddressError.invalidVersionByte {
@@ -33,7 +33,7 @@ public struct AddressFactory {
         } catch AddressError.invalidScheme {
             throw AddressError.invalidScheme
         } catch AddressError.invalid {
-            return try LegacyAddress(plainAddress)
+            return try LegacyAddress(plainAddress, network:network)
         }
     }
 }

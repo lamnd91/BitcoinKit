@@ -44,7 +44,9 @@ public final class HDWallet {
     private let keychain: HDKeychain
 
     private let purpose: UInt32
-    private let coinType: UInt32
+    private var coinType: UInt32 {
+        return network.coinType
+    }
     var account: UInt32
     var externalIndex: UInt32
     var internalIndex: UInt32
@@ -66,7 +68,7 @@ public final class HDWallet {
         // Coin type is a constant, set for each cryptocoin. Cryptocoin developers may ask for registering unused number for their project.
         // The list of already allocated coin types is in the chapter "Registered coin types" below.
         // Hardened derivation is used at this level.
-        coinType = network == .mainnet ? 0 : 1
+//        coinType = network == .mainnet ? 0 : 1
 
         // This level splits the key space into independent user identities, so the wallet never mixes the coins across different accounts.
         // Users can use these accounts to organize the funds in the same fashion as bank accounts; for donation purposes (where all addresses are considered public), for saving purposes, for common expenses etc.

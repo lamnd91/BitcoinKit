@@ -81,8 +81,8 @@ final public class Wallet {
         self.init(privateKey: privateKey, dataStore: dataStore)
     }
 
-    public convenience init?(wif: String) {
-        guard let privateKey = try? PrivateKey(wif: wif) else {
+    public convenience init?(wif: String, network:Network? = nil) {
+        guard let privateKey = try? PrivateKey(wif: wif, network: network) else {
             return nil
         }
         self.init(privateKey: privateKey)
