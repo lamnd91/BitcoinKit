@@ -188,10 +188,10 @@ open class Mainnet: Network {
     }
     override open var coinType: UInt32 { return 0 }
     
-    override var xpubkey: UInt32 {
+    override open var xpubkey: UInt32 {
         return 0x0488b21e
     }
-    override var xprivkey: UInt32 {
+    override open var xprivkey: UInt32 {
         return 0x0488ade4
     }
     public override var port: UInt32 {
