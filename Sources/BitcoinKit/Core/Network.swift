@@ -30,6 +30,10 @@ open class Network {
     public static let testnet: Network = BCHTestnet()
     public static let mainnetBTC: Network = BTCMainnet()
     public static let testnetBTC: Network = BTCTestnet()
+    public static let zcoin: Network = Zcoin()
+    public static let divi: Network = DIVI()
+    public static let litecoin: Network = Litecoin()
+    public static let dash: Network = Dash()
     
     public var name: String { return "" }
     public var alias: String { return "" }
@@ -164,6 +168,40 @@ public class BCHTestnet: Testnet {
             Checkpoint(height: 1_240_000, hash: Data(Data(hex: "0000000002a2bbefefa5aa5f0b7e95957537693808e753f4b4a8e26c5257891d")!.reversed()), timestamp: 1_296_688_602, target: 0x1b09ecf0)
         ]
     }
+}
+
+public class Zcoin: Mainnet {
+    override public var pubkeyhash: UInt8 { return 0x52 }
+    override public var privatekey: UInt8 { return 0xd2 }
+    override public var scripthash: UInt8 { return 0x07 }
+    override public var magic: UInt32 { return 0xe3d9fef1 }
+    override public var coinType: UInt32 { return 136 }
+}
+
+public class DIVI: Mainnet {
+    override public var pubkeyhash: UInt8 { return 30 }
+    override public var privatekey: UInt8 { return 0xd4 }
+    override public var scripthash: UInt8 { return 13 }
+    override public var magic: UInt32 { return 0xbf0c6bbd }
+    override public var coinType: UInt32 { return 301 }
+}
+
+public class Dash: Mainnet {
+    override public var pubkeyhash: UInt8 { return 0x4c }
+    override public var privatekey: UInt8 { return 0xcc }
+    override public var scripthash: UInt8 { return 0x10 }
+    override public var magic: UInt32 { return 0xbf0c6bbd }
+    override public var coinType: UInt32 { return 5 }
+}
+
+public class Litecoin: Mainnet {
+    override public var pubkeyhash: UInt8 { return 0x30 }
+    override public var privatekey: UInt8 { return 0xb0 }
+    override public var scripthash: UInt8 { return 0x05 }
+    override public var magic: UInt32 { return 0xfbc0b6db }
+    override public var coinType: UInt32 { return 2 }
+    override public var xpubkey: UInt32 { return 0x019da462 }
+    override public var xprivkey: UInt32 { return 0x019d9cfe }
 }
 
 open class Mainnet: Network {
