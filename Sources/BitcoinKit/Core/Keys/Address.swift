@@ -66,7 +66,7 @@ public struct LegacyAddress: Address {
         self.publicKey = publicKey
     }
 
-    public init(_ base58: Base58Check, network:Network? = nil) throws {
+    public init(_ base58: Base58Check, network: Network? = nil) throws {
         guard let raw = Base58.decode(base58) else {
             throw AddressError.invalid
         }

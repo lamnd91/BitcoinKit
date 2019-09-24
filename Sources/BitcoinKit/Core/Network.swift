@@ -34,11 +34,11 @@ open class Network {
     public static let divi: Network = DIVI()
     public static let litecoin: Network = Litecoin()
     public static let dash: Network = Dash()
-    
+
     public var name: String { return "" }
     public var alias: String { return "" }
     public var scheme: String { return "" }
-    
+
     // version byte
     var pubkeyhash: UInt8 { return 0 }
     var privatekey: UInt8 { return 0 }
@@ -46,13 +46,13 @@ open class Network {
     var xpubkey: UInt32 { return 0 }
     var xprivkey: UInt32 { return 0 }
     var coinType: UInt32 { return 0 }
-    
+
     var magic: UInt32 { return 0 }
     public var port: UInt32 { return 0 }
     public var dnsSeeds: [String] { return [] }
     var checkpoints: [Checkpoint] { return [] }
     var genesisBlock: Data { return Data() }
-    
+
     public init() {}
 }
 
@@ -121,7 +121,7 @@ public class BTCTestnet: Testnet {
 }
 
 public class BCHMainnet: Mainnet {
-    public override var coinType: UInt32 {return 145}
+    public override var coinType: UInt32 { return 145 }
     public override var scheme: String {
         return "bitcoincash"
     }
@@ -146,7 +146,7 @@ public class BCHMainnet: Mainnet {
 }
 
 public class BCHTestnet: Testnet {
-    public override var coinType: UInt32 {return 145}
+    public override var coinType: UInt32 { return 145 }
     public override var scheme: String {
         return "bchtest"
     }
@@ -220,12 +220,12 @@ open class Mainnet: Network {
     override open var scripthash: UInt8 {
         return 0x05
     }
-    
+
     override open var magic: UInt32 {
         return 0
     }
     override open var coinType: UInt32 { return 0 }
-    
+
     override open var xpubkey: UInt32 {
         return 0x0488b21e
     }

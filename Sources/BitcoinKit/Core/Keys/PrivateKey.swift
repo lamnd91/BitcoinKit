@@ -79,7 +79,7 @@ public struct PrivateKey {
         self.data = key
     }
 
-    public init(wif: String, network:Network? = nil) throws {
+    public init(wif: String, network: Network? = nil) throws {
         guard let decoded = Base58.decode(wif) else {
             throw PrivateKeyError.invalidFormat
         }
